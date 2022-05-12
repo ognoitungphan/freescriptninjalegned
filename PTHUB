@@ -1,0 +1,63 @@
+ --Made by : https://v3rmillion.net/member.php?action=profile&uid=1591342
+ 
+ local ShowerLib = loadstring(game:HttpGet("https://fluxteam.xyz/scripts/others/ShowerHeadLibrary.lua"))()
+       local Window = ShowerLib:CreateWindow("TUNG CHIM TO"); --Clicking this will make it rotate.
+       local HomePage = Window:Section("Main")
+       local More =Window:Section("Player")
+       HomePage:AddLabel("FARMING")
+
+       HomePage:AddToggle("AUTO SWING", function(v)
+        getgenv().autoswing = v
+         while true do
+            if not  getgenv().autoswing then return end
+            local A_1 = "swingKatana"
+            local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+            Event:FireServer(A_1)
+            wait()
+         end
+        end)
+
+
+       HomePage:AddToggle("AUTO SELL", function(v)
+        getgenv().autosell = v
+        while true do 
+            if getgenv().autosell ==false then return end
+            game:GetService("Workspace").sellAreaCircles["sellAreaCircles"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            wait(0,1)
+            game:GetService("Workspace").sellAreaCircles["sellAreaCircles"].circleInner.CFrame = CFrame.new(0,0,0)
+            wait(0,1)
+        end
+    end)
+end
+
+
+
+      More:AddLabel("PLAYER hack")
+
+       More:AddSlider("jump", 16, 500, 10, function(mount)
+           while true do
+               if false then return end
+               game.Players.LocalPlayer.Character.Humanoid.JumpPower = mount
+             wait()
+           end
+       end)
+       More:AddLabel("FUN")
+
+
+       More:ColorPicker("Baseplate Color", Color3.fromRGB(255,255,255), function(Color)
+        workspace.Baseplate.Color = Color
+    end)
+
+
+       More:AddLabel("MICS")
+       More:AddButton("Destroy GUI", function()
+           ShowerLib:Destroy() -- Kills the GUI
+       end)
+
+       More:AddBind("Close Keybind", Enum.KeyCode.T, function()
+           ShowerLib:OpenClose() -- opens or closes the UI
+       end)
+
+    --   HomePage:AddDrop("Favorite Food?", {"Dick", "Pussy", "Cow", "Pig", "Bacon"}, function(Selected)
+    --       print(Selected) -- prints what the user selected
+    --   end)
